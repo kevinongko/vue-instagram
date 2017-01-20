@@ -1,0 +1,26 @@
+{
+  "name": "vue-instagram",
+  "version": "1.0.0",
+  "description": "Fetch Instagram feed components based on Vue.",
+  "author": "Kevin Ongko",
+  "main": "src/vue-instagram.vue",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinongko/vue-instagram.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kevinongko/vue-instagram/issues"
+  },
+  "keywords": [
+    "component",
+    "instagram",
+    "feed",
+    "vue",
+    "vue.js"
+  ],
+  "homepage": "https://github.com/kevinongko/vue-instagram#readme",
+  "license": "MIT",
+  "dependencies": {
+    "jsonp": "^0.2.1"
+  }
+}
