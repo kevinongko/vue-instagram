@@ -1,7 +1,7 @@
 # vue-instagram
 
-[![npm version](https://badge.fury.io/js/vue-instagram.svg)](https://badge.fury.io/js/vue-numeric)
-[![npm](https://img.shields.io/npm/dt/vue-instagram.svg)](https://www.npmjs.com/package/vue-numeric)
+[![npm version](https://badge.fury.io/js/vue-instagram.svg)](https://badge.fury.io/js/vue-instagram)
+[![npm](https://img.shields.io/npm/dt/vue-instagram.svg)](https://www.npmjs.com/package/vue-instagram)
 [![npm](https://img.shields.io/npm/l/vue-instagram.svg)](http://opensource.org/licenses/MIT)
 
 Fetch Instagram feed components based on [Vue](https://vuejs.org/).
