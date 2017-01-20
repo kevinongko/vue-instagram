@@ -1,10 +1,12 @@
 <template>
-  <slot
-    name="feeds"
-    v-for="feed in feeds"
-    :feed="feed"
-  >
-  </slot>
+  <div>
+    <slot
+      name="feeds"
+      v-for="feed in feeds"
+      :feed="feed"
+    >
+    </slot>
+  </div>
 </template>
 
 <script>
