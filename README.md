@@ -15,11 +15,16 @@ $ npm install vue-instagram --save
 
 ## Usage
 
+Style your feeds using [scoped slot] (https://vuejs.org/v2/guide/components.html#Scoped-Slots)
+
 ```vue
 <template>
   <vue-instagram token="accessTokenHere" username="kevinongko" :count="5">
     <template slot="feeds" scope="props">
       <li class="fancy-list"> {{ props.feed.link }} </li>
+    </template>
+    <template slot="error" scope="props">
+      <div class="fancy-alert"> {{ props.error.error_message }} </div>
     </template>
   </vue-instagram>
 </template>

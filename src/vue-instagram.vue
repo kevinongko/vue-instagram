@@ -6,7 +6,7 @@
       :feed="feed"
     >
     </slot>
-    <p v-if="error">{{ error.error_message }}</p>
+    <slot name="error" :error="error"></slot>
   </div>
 </template>
 
@@ -51,13 +51,15 @@ export default {
 
   mounted () {
     jsonp('https://api.instagram.com/v1/users/search?access_token=' + this.token + '&q=' + this.username, null,
-      (response) => {
-        if (response.meta.code === 200) {
-          this.profile = response.data
+      (err, data) => {
+        if (err) {
+          console.log(err)
+        } else if (data.meta.code === 400) {
+          this.error = data.meta
+          console.log(data.meta.error_message)
+        } else if (data.meta.code === 200) {
+          this.profile = data.data
           this.getUserFeed()
-        } else if (response.meta.code === 400) {
-          this.error = response.meta
-          console.log(response.meta.error_message)
         }
       }
     )
@@ -69,12 +71,14 @@ export default {
         'https://api.instagram.com/v1/users/' + this.profile[0].id +
         '/media/recent?access_token=' + this.token + '&count=' + this.count,
         null,
-        (response) => {
-          if (response.meta.code === 200) {
-            this.feeds = response.data
-          } else if (response.meta.code === 400) {
-            this.error = response.meta
-            console.log(response.meta.error_message)
+        (err, data) => {
+          if (err) {
+            console.log(err)
+          } else if (data.meta.code === 400) {
+            this.error = data.meta
+            console.log(data.meta.error_message)
+          } else if (data.meta.code === 200) {
+            this.feeds = data.data
           }
         }
       )
