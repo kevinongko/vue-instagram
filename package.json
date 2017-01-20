@@ -1,6 +1,6 @@
 {
   "name": "vue-instagram",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Fetch Instagram feed components based on Vue.",
   "author": "Kevin Ongko",
   "main": "src/vue-instagram.vue",

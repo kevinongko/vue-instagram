@@ -51,13 +51,13 @@ export default {
 
   mounted () {
     jsonp('https://api.instagram.com/v1/users/search?access_token=' + this.token + '&q=' + this.username, null,
-      (err, response) => {
-        if (err) {
-          this.error = err
-          console.log(err)
-        } else {
+      (response) => {
+        if (response.meta.code === 200) {
           this.profile = response.data
           this.getUserFeed()
+        } else if (response.meta.code === 400) {
+          this.error = response.meta
+          console.log(response.meta.error_message)
         }
       }
     )
@@ -69,12 +69,12 @@ export default {
         'https://api.instagram.com/v1/users/' + this.profile[0].id +
         '/media/recent?access_token=' + this.token + '&count=' + this.count,
         null,
-        (err, response) => {
-          if (err) {
-            this.error = err
-            console.log(err)
-          } else {
+        (response) => {
+          if (response.meta.code === 200) {
             this.feeds = response.data
+          } else if (response.meta.code === 400) {
+            this.error = response.meta
+            console.log(response.meta.error_message)
           }
         }
       )
