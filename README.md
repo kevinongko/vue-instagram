@@ -6,6 +6,10 @@
 
 Fetch Instagram feeds component based on [Vue](https://vuejs.org/).
 
+## Demo
+
+[My Instagram's feed] (https://kevinongko.github.io/vue-instagram/)
+
 ## Installation
 
 ```sh
