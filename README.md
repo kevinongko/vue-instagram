@@ -34,7 +34,7 @@ Style your feeds using [scoped slot] (https://vuejs.org/v2/guide/components.html
 </template>
 
 <script>
-import VueInstagram from 'vue-numeric'
+import VueInstagram from 'vue-instagram'
 
 export default {
   name: 'App',
