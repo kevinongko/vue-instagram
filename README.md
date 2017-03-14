@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/dt/vue-instagram.svg)](https://www.npmjs.com/package/vue-instagram)
 [![npm](https://img.shields.io/npm/l/vue-instagram.svg)](http://opensource.org/licenses/MIT)
 
-Fetch Instagram feeds component based on [Vue](https://vuejs.org/) 2.
+Fetch Instagram feeds component based on [Vue 2](https://vuejs.org/).
 
 ## Demo
 
