@@ -50,11 +50,11 @@ export default {
 ```
 
 ## Props
-|props|description|type|required|
----|---|---|---|
-token|Instagram's access token|String|true|
-username|Instagram's username (token's owner)|String|true|
-count|Numbers of feed to fetch|Number|true
+|Props|Description|Type|Required|
+|-----|-----------|----|--------|
+|token|Instagram's access token|String|true|
+|username|Instagram's username (token's owner)|String|true|
+|count|Numbers of feed to fetch|Number|true
 
 ## License
 
