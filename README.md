@@ -50,32 +50,11 @@ export default {
 ```
 
 ## Props
-```js
-  /*
-   * Instagram access token.
-   */
-  token: {
-    required: true,
-    type: String
-  },
-
-  /*
-   * Instagram username.
-   */
-  username: {
-    required: true,
-    type: String
-  },
-
-  /*
-   * Numbers of feed.
-   */
-  count: {
-    default: 3
-    required: false,
-    type: Number
-  },
-```
+|props|description|type|required|
+---|---|---|---|
+token|Instagram's access token|String|true|
+username|Instagram's username (token's owner)|String|true|
+count|Numbers of feed to fetch|Number|true
 
 ## License
 
