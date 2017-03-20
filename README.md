@@ -21,7 +21,7 @@ $ npm install vue-instagram --save
 
 ## Usage
 
-Style your feeds using [scoped slot] (https://vuejs.org/v2/guide/components.html#Scoped-Slots)
+Style your feeds using [scoped slot](https://vuejs.org/v2/guide/components.html#Scoped-Slots)
 
 ```vue
 <template>
