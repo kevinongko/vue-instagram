@@ -1,11 +1,8 @@
 <template>
   <div>
-    <slot
-      name="feeds"
-      v-for="feed in feeds"
-      :feed="feed"
-    >
-    </slot>
+    <span v-for="(feed, index) in feeds" :key="index">
+      <slot name="feeds" :feed="feed"></slot>
+    </span>
     <slot name="error" :error="error"></slot>
   </div>
 </template>
@@ -44,19 +41,17 @@ export default {
   },
 
   data: () => ({
-    profile: '',
+    error: '',
     feeds: [],
-    error: ''
+    profile: ''
   }),
 
   mounted () {
-    jsonp('https://api.instagram.com/v1/users/search?access_token=' + this.token + '&q=' + this.username, null,
-      (err, data) => {
+    jsonp(`https://api.instagram.com/v1/users/search?access_token=${this.token}&q=${this.username}`, null, (err, data) => {
         if (err) {
-          console.log(err)
+          throw err
         } else if (data.meta.code === 400) {
           this.error = data.meta
-          console.log(data.meta.error_message)
         } else if (data.meta.code === 200) {
           this.profile = data.data
           this.getUserFeed()
@@ -68,15 +63,11 @@ export default {
   methods: {
     getUserFeed () {
       jsonp(
-        'https://api.instagram.com/v1/users/' + this.profile[0].id +
-        '/media/recent?access_token=' + this.token + '&count=' + this.count,
-        null,
-        (err, data) => {
+        `https://api.instagram.com/v1/users/${this.profile[0].id}/media/recent?access_token=${this.token}&count=${this.count}`, null, (err, data) => {
           if (err) {
-            console.log(err)
+            throw err
           } else if (data.meta.code === 400) {
             this.error = data.meta
-            console.log(data.meta.error_message)
           } else if (data.meta.code === 200) {
             this.feeds = data.data
           }
