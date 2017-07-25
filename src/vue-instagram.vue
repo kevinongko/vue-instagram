@@ -1,8 +1,6 @@
 <template>
   <div>
-    <span v-for="(feed, index) in feeds" :key="index">
-      <slot name="feeds" :feed="feed"></slot>
-    </span>
+    <slot v-for="(feed, index) in feeds" name="feeds" :feed="feed" :key="index"></slot>
     <slot name="error" :error="error"></slot>
   </div>
 </template>
