@@ -1,9 +1,9 @@
 {
   "name": "vue-instagram",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Fetch Instagram feed components based on Vue.",
   "author": "Kevin Ongko",
-  "main": "src/vue-instagram.vue",
+  "main": "dist/vue-instagram.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kevinongko/vue-instagram.git"
@@ -19,7 +19,8 @@
     "vue.js"
   ],
   "scripts": {
-    "lint": "cross-env eslint --ext .js,.vue src"
+    "lint": "./node_modules/.bin/eslint --ext .js,.vue src",
+    "build": "./node_modules/.bin/webpack --hide-modules -p --progress"
   },
   "homepage": "https://github.com/kevinongko/vue-instagram#readme",
   "license": "MIT",
@@ -27,14 +28,29 @@
     "jsonp": "^0.2.1"
   },
   "devDependencies": {
-    "cross-env": "^5.0.1",
-    "eslint": "^4.3.0",
-    "eslint-plugin-vue": "beta"
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-latest": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "css-loader": "^0.28.4",
+    "eslint": "4.3.0",
+    "eslint-plugin-vue": "3.10.0",
+    "vue-loader": "^13.0.4",
+    "vue-template-compiler": "^2.4.2",
+    "webpack": "^3.4.1"
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ]
   },
   "eslintConfig": {
     "extends": [
       "eslint:recommended",
       "plugin:vue/recommended"
-    ]
+    ],
+    "rules": {
+      "vue/require-v-for-key": 0
+    }
   }
 }

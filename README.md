@@ -19,6 +19,37 @@ Fetch Instagram feeds component based on [Vue](https://vuejs.org/).
 $ npm install vue-instagram --save
 ```
 
+### Install as Component
+```js
+import Vue from 'vue'
+import VueInstagram from 'vue-instagram'
+
+export default {
+  name: 'App',
+
+  components: {
+    VueInstagram
+  }
+}
+```
+
+### Install as Plugin
+```js
+import Vue from 'vue'
+import VueInstagram from 'vue-instagram'
+
+Vue.use(VueInstagram)
+```
+
+### Install via CDN
+```html
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue-instagram"></script>
+
+<script>
+  Vue.use(VueInstagram.default)
+</script>
+```
 
 ## Usage
 
