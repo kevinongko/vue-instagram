@@ -15,11 +15,22 @@ Instagram's feed fetcher component based on [Vue](https://vuejs.org/).
 
 ## Installation
 
+### Install via CDN
+```html
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue-instagram"></script>
+
+<script>
+  Vue.use(VueInstagram.default)
+</script>
+```
+
+### Install via NPM
 ```sh
 $ npm install vue-instagram --save
 ```
 
-### Install as Component
+#### Install as Component
 ```js
 import Vue from 'vue'
 import VueInstagram from 'vue-instagram'
@@ -33,22 +44,12 @@ export default {
 }
 ```
 
-### Install as Plugin
+#### Install as Plugin
 ```js
 import Vue from 'vue'
 import VueInstagram from 'vue-instagram'
 
 Vue.use(VueInstagram)
-```
-
-### Install via CDN
-```html
-<script src="https://unpkg.com/vue"></script>
-<script src="https://unpkg.com/vue-instagram"></script>
-
-<script>
-  Vue.use(VueInstagram.default)
-</script>
 ```
 
 ## Usage
