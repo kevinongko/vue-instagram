@@ -30,7 +30,7 @@ Instagram's feed fetcher component based on [Vue](https://vuejs.org/).
 $ npm install vue-instagram --save
 ```
 
-#### Install as Component
+#### Register as Component
 ```js
 import Vue from 'vue'
 import VueInstagram from 'vue-instagram'
@@ -44,7 +44,7 @@ export default {
 }
 ```
 
-#### Install as Plugin
+#### Register as Plugin
 ```js
 import Vue from 'vue'
 import VueInstagram from 'vue-instagram'
