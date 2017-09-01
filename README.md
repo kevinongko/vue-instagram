@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/dm/vue-instagram.svg)](https://www.npmjs.com/package/vue-instagram)
 [![npm](https://img.shields.io/npm/l/vue-instagram.svg)](http://opensource.org/licenses/MIT)
 
-Instagram's feed fetcher component based on [Vue.js](https://vuejs.org/).
+Instagram's feed fetcher component based on [Vue](https://vuejs.org/).
 
 ``Works with Vue 2.*``
 
