@@ -7,7 +7,7 @@
 
 Instagram's feed fetcher component based on [Vue](https://vuejs.org/).
 
-``Works with Vue 2.*``
+**Works with Vue 2.***
 
 ## Demo
 
