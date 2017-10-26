@@ -59,10 +59,10 @@ Style your feeds using [scoped slot](https://vuejs.org/v2/guide/components.html#
 ```vue
 <template>
   <vue-instagram token="accessTokenHere" username="kevinongko" :count="5">
-    <template slot="feeds" scope="props">
+    <template slot="feeds" slot-scope="props">
       <li class="fancy-list"> {{ props.feed.link }} </li>
     </template>
-    <template slot="error" scope="props">
+    <template slot="error" slot-scope="props">
       <div class="fancy-alert"> {{ props.error.error_message }} </div>
     </template>
   </vue-instagram>
