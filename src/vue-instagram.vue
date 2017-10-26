@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import jsonp from 'jsonp'
+import jsonp from 'browser-jsonp'
 
 export default {
   name: 'vue-instagram',
@@ -45,32 +45,31 @@ export default {
   }),
 
   mounted () {
-    jsonp(`https://api.instagram.com/v1/users/search?access_token=${this.token}&q=${this.username}`, null, (err, data) => {
-        if (err) {
-          throw err
-        } else if (data.meta.code === 400) {
-          this.error = data.meta
-        } else if (data.meta.code === 200) {
-          this.profile = data.data
+    jsonp({
+      url: 'https://api.instagram.com/v1/users/search',
+      data: { access_token: this.token, q: this.username },
+      error: error => { throw error },
+      complete: response => {
+        if (response.meta.code === 400) this.error = response.meta
+        if (response.meta.code === 200) {
+          this.profile = response.data
           this.getUserFeed()
         }
       }
-    )
+    })
   },
 
   methods: {
     getUserFeed () {
-      jsonp(
-        `https://api.instagram.com/v1/users/${this.profile[0].id}/media/recent?access_token=${this.token}&count=${this.count}`, null, (err, data) => {
-          if (err) {
-            throw err
-          } else if (data.meta.code === 400) {
-            this.error = data.meta
-          } else if (data.meta.code === 200) {
-            this.feeds = data.data
-          }
+      jsonp({
+        url: `https://api.instagram.com/v1/users/${this.profile[0].id}/media/recent`,
+        data: { access_token: this.token, count: this.count },
+        error: error => { throw error },
+        complete: response => {
+          if (response.meta.code === 400) this.error = response.meta
+          if (response.meta.code === 200) this.feeds = response.data
         }
-      )
+      })
     }
   }
 }
