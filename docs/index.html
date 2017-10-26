@@ -2,10 +2,108 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>vue-instagram example</title>
+    <title>vue-instagram demo</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
-    <script src="./build.js"></script>
+    <div id="app" v-cloak>
+      <section class="hero is-danger is-bold">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+              Vue Instagram
+            </h1>
+            <h2 class="subtitle">
+              Instagram's feed fetcher component based on Vue.js
+            </h2>
+          </div>
+        </div>
+      </section>
+
+      <div class="section container">
+        <vue-instagram :token="token" username="kevin.ongko" :count="5" class="columns is-multiline is-mobile">
+          <template slot="feeds" slot-scope="props">
+            <div class="column is-4-desktop is-6-tablet is-6-mobile">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img :src="props.feed.images.low_resolution.url" alt="Image">
+                  </figure>
+                </div>
+
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-left">
+                      <figure class="image" style="height: 40px; width: 40px;">
+                        <img :src="props.feed.user.profile_picture" alt="Image">
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-4">{{ props.feed.user.full_name }}</p>
+                      <p class="subtitle is-6">@ {{ props.feed.user.username }}</p>
+                    </div>
+                  </div>
+
+                  <div class="content" style="height: 100px; overflow: auto;">
+                    {{ props.feed.caption.text }}
+                  </div>
+                </div>
+                <footer class="card-footer">
+                  <p class="card-footer-item"><i class="fa fa-heart"></i> &nbsp; {{ props.feed.likes.count }}</p>
+                  <p class="card-footer-item"><i class="fa fa-commenting"></i> &nbsp; {{ props.feed.comments.count }}</p>
+                  <a :href="props.feed.link" target="_blank" class="card-footer-item"><i class="fa fa-external-link"></i> &nbsp; Link</a>
+                </footer>
+              </div>
+            </div>
+          </template>
+        </vue-instagram>
+      </div>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="content has-text-centered">
+            <p>
+              <strong>Vue Instagram</strong> by <a href="http://kevinongko.com">Kevin Ongko</a>. The source code is licensed
+              <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
+            </p>
+            <p>
+              <a href="https://www.npmjs.com/package/vue-instagram" target="_blank">
+                <img src="https://img.shields.io/npm/v/vue-instagram.svg">
+                <img src="https://img.shields.io/npm/dt/vue-instagram.svg">
+                <img src="https://img.shields.io/npm/dm/vue-instagram.svg">
+                <img src="https://img.shields.io/npm/l/vue-instagram.svg">
+              </a>
+            </p>
+            <p>
+              <a href="https://github.com/kevinongko/vue-instagram" target="_blank">
+                <img src="https://img.shields.io/github/stars/kevinongko/vue-instagram.svg?style=social&label=Star">
+                <img src="https://img.shields.io/github/forks/kevinongko/vue-instagram.svg?style=social&label=Fork">
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
   </body>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vue-instagram"></script>
+  <script>
+    Vue.use(VueInstagram.default)
+
+    new Vue({
+      el: '#app',
+
+      data: {
+        token: '362555203.4f46a97.4f3cda97a50b49c89bc950c7f2d36766'
+      }
+    })
+  </script>
 </html>
