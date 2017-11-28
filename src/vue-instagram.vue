@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import jsonp from 'browser-jsonp'
 
 export default {
@@ -16,25 +17,31 @@ export default {
     * Instagram access token.
     */
     token: {
-      required: true,
-      type: String
+      type: String,
+      required: true
     },
 
     /*
     * Instagram username.
     */
     username: {
-      required: true,
-      type: String
+      type: String,
+      required: true
     },
 
     /*
     * Numbers of feed.
     */
     count: {
+      type: Number,
       default: 3,
-      required: false,
-      type: Number
+      required: false
+    },
+
+    tags: {
+      type: Array,
+      default: () => [],
+      required: false
     }
   },
 
@@ -67,7 +74,13 @@ export default {
         error: error => { throw error },
         complete: response => {
           if (response.meta.code === 400) this.error = response.meta
-          if (response.meta.code === 200) this.feeds = response.data
+          if (response.meta.code === 200) {
+            if (this.tags.length) {
+              this.feeds = _.filter(response.data, item => _.intersection(this.tags, item.tags).length)
+            } else {
+              this.feeds = response.data
+            }
+          }
         }
       })
     }
