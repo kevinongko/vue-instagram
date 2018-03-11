@@ -38,6 +38,11 @@ export default {
       required: false
     },
 
+    mediaType: {
+      type: String,
+      required: false
+    },
+
     tags: {
       type: Array,
       default: () => [],
@@ -70,16 +75,23 @@ export default {
     getUserFeed () {
       jsonp({
         url: `https://api.instagram.com/v1/users/${this.profile[0].id}/media/recent`,
-        data: { access_token: this.token, count: this.count },
+        data: { access_token: this.token, count: 100 },
         error: error => { throw error },
         complete: response => {
           if (response.meta.code === 400) this.error = response.meta
           if (response.meta.code === 200) {
-            if (this.tags.length) {
-              this.feeds = _.filter(response.data, item => _.intersection(this.tags, item.tags).length)
-            } else {
-              this.feeds = response.data
+            let { data } = response
+            const types = ['image', 'video']
+
+            if (this.mediaType && types.indexOf(this.mediaType) > -1) {
+              data = _.filter(data, item => this.mediaType === item.type)
             }
+
+            if (this.tags.length) {
+              data = _.filter(data, item => _.intersection(this.tags, item.tags).length)
+            }
+
+            this.feeds = _.slice(_.values(data), 0, this.count)
           }
         }
       })
