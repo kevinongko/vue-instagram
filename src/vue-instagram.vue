@@ -75,7 +75,7 @@ export default {
     getUserFeed () {
       jsonp({
         url: `https://api.instagram.com/v1/users/${this.profile[0].id}/media/recent`,
-        data: { access_token: this.token, count: 100 },
+        data: { access_token: this.token }, // returns max 20 results.
         error: error => { throw error },
         complete: response => {
           if (response.meta.code === 400) this.error = response.meta
