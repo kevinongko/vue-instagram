@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="containerClass">
     <slot v-for="(feed, index) in feeds" name="feeds" :index="index" :feed="feed"></slot>
     <slot name="error" :error="error"></slot>
   </div>
@@ -42,6 +42,13 @@ export default {
       type: Array,
       default: () => [],
       required: false
+    },
+
+    // class for container div
+    containerClass: {
+      type: String,
+      default : '',
+      required : false
     }
   },
 
