@@ -22,14 +22,6 @@ export default {
     },
 
     /*
-    * Instagram username.
-    */
-    username: {
-      type: String,
-      required: true
-    },
-
-    /*
     * Numbers of feed.
     */
     count: {
