@@ -79,10 +79,19 @@ export default {
         complete: response => {
           if (response.meta.code === 400) this.error = response.meta
           if (response.meta.code === 200) {
-            if (this.tags.length) {
-              this.feeds = _.filter(response.data, item => _.intersection(this.tags, item.tags).length)
-            } else {
-              this.feeds = response.data
+            if (response.meta.code === 200) {
+              let { data } = response
+              const types = ['image', 'video']
+
+              if (this.mediaType && types.indexOf(this.mediaType) > -1) {
+                data = _.filter(data, item => this.mediaType === item.type)
+              }
+
+              if (this.tags.length) {
+                data = _.filter(data, item => _.intersection(this.tags, item.tags).length)
+              }
+
+              this.feeds = _.slice(_.values(data), 0, this.count)
             }
           }
         }
