@@ -7,6 +7,8 @@
 
 Instagram's feed fetcher component based on [Vue](https://vuejs.org/).
 
+Fetch instagram feed via [`GET /users/self`](https://www.instagram.com/developer/endpoints/users/)
+
 **Works with Vue 2.***
 
 ## Demo
@@ -58,7 +60,7 @@ Style your feeds using [scoped slot](https://vuejs.org/v2/guide/components.html#
 
 ```vue
 <template>
-  <vue-instagram token="accessTokenHere" username="kevinongko" :count="5" :tags="['hashtag1', 'hashtag2']" mediaType="image">
+  <vue-instagram token="accessTokenHere" :count="5" :tags="['hashtag1', 'hashtag2']" mediaType="image">
     <template slot="feeds" slot-scope="props">
       <li class="fancy-list"> {{ props.feed.link }} </li>
     </template>
@@ -86,7 +88,6 @@ export default {
 |Props|Description|Type|Required|
 |-----|-----------|----|--------|
 |token|Instagram's access token|String|true|
-|username|Instagram's username (token's owner)|String|true|
 |count|Numbers of feed to fetch|Number|true
 |tags|Filter profile's feed by hastag|Array|false
 |mediaType|Filter profile's feed by media type: image or video|String|false
