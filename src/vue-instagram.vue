@@ -30,11 +30,17 @@ export default {
       required: false
     },
 
+    /*
+    * Filter by media type, ex: video, image.
+    */
     mediaType: {
       type: String,
       required: false
     },
 
+    /*
+    * Filter by tags.
+    */
     tags: {
       type: Array,
       default: () => [],
@@ -51,23 +57,11 @@ export default {
 
   data: () => ({
     error: '',
-    feeds: [],
-    profile: ''
+    feeds: []
   }),
 
   mounted () {
-    jsonp({
-      url: 'https://api.instagram.com/v1/users/self',
-      data: { access_token: this.token },
-      error: error => { throw error },
-      complete: response => {
-        if (response.meta.code === 400) this.error = response.meta
-        if (response.meta.code === 200) {
-          this.profile = response.data
-          this.getUserFeed()
-        }
-      }
-    })
+    this.getUserFeed()
   },
 
   methods: {
