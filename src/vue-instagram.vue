@@ -7,7 +7,7 @@
 
 <script>
 import _ from 'lodash'
-import jsonp from 'browser-jsonp'
+import axios from 'axios'
 
 export default {
   name: 'vue-instagram',
@@ -66,12 +66,11 @@ export default {
 
   methods: {
     getUserFeed () {
-      jsonp({
+      axios.get({
         url: `https://api.instagram.com/v1/users/self/media/recent`,
-        data: { access_token: this.token, count: this.count },
-        error: error => { throw error },
-        complete: response => {
-          if (response.meta.code === 400) this.error = response.meta
+        params: { access_token: this.token, count: this.count },
+      }).then(response => {
+        if (response.meta.code === 400) this.error = response.meta
           if (response.meta.code === 200) {
             if (response.meta.code === 200) {
               let { data } = response
@@ -88,8 +87,8 @@ export default {
               this.feeds = _.slice(_.values(data), 0, this.count)
             }
           }
-        }
       })
+      .catch(error => { throw error })
     }
   }
 }
