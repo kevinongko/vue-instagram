@@ -66,14 +66,13 @@ export default {
 
   methods: {
     getUserFeed () {
-      axios.get({
-        url: `https://api.instagram.com/v1/users/self/media/recent`,
+      axios.get(`https://api.instagram.com/v1/users/self/media/recent`, {
         params: { access_token: this.token, count: this.count },
-      }).then(response => {
-        if (response.meta.code === 400) this.error = response.meta
-          if (response.meta.code === 200) {
-            if (response.meta.code === 200) {
-              let { data } = response
+      }).then((response) => {
+        if (response.data.meta.code === 400) this.error = response.data.meta
+          if (response.data.meta.code === 200) {
+            if (response.data.meta.code === 200) {
+              let { data } = response.data
               const types = ['image', 'video']
 
               if (this.mediaType && types.indexOf(this.mediaType) > -1) {
