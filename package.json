@@ -1,6 +1,6 @@
 {
   "name": "vue-instagram",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Fetch Instagram feed components based on Vue.",
   "author": "Kevin Ongko",
   "main": "dist/vue-instagram.min.js",
@@ -25,22 +25,28 @@
   "homepage": "https://github.com/kevinongko/vue-instagram#readme",
   "license": "MIT",
   "dependencies": {
-    "browser-jsonp": "^1.1.5",
-    "lodash": "^4.17.4"
+    "axios": "^0.19.0",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.1.1",
-    "babel-plugin-lodash": "^3.3.2",
-    "babel-preset-env": "^1.6.1",
-    "clean-webpack-plugin": "^0.1.16",
-    "css-loader": "^0.28.4",
-    "eslint": "4.18.2",
-    "eslint-plugin-vue": "3.13.1",
-    "vue": "^2.5.2",
-    "vue-loader": "^13.0.4",
-    "vue-template-compiler": "^2.5.2",
-    "webpack": "^3.12.0"
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.5",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-lodash": "^3.3.4",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.1",
+    "eslint": "6.7.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "6.0.1",
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "babel": {
     "plugins": [
@@ -48,27 +54,23 @@
     ],
     "presets": [
       [
-        "env",
+        "@babel/preset-env",
         {
-          "uglify": true,
           "modules": false,
-          "targets": {
-            "node": 6,
-            "browsers": [
-              "> 1%",
-              "last 2 versions",
-              "not ie <= 8"
-            ]
-          }
+          "forceAllTransforms": true,
+          "targets": "> 0.25%, not dead"
         }
       ]
     ]
   },
   "eslintConfig": {
     "extends": [
-      "eslint:recommended",
-      "plugin:vue/recommended"
+      "plugin:vue/recommended",
+      "standard"
     ],
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
     "rules": {
       "vue/require-v-for-key": 0
     }
