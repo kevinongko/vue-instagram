@@ -35,7 +35,7 @@
     "babel-preset-env": "^1.6.1",
     "clean-webpack-plugin": "^0.1.16",
     "css-loader": "^0.28.4",
-    "eslint": "4.3.0",
+    "eslint": "4.18.2",
     "eslint-plugin-vue": "3.13.1",
     "vue": "^2.5.2",
     "vue-loader": "^13.0.4",
