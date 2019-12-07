@@ -20,7 +20,7 @@ Fetch instagram feed via [`GET /users/self`](https://www.instagram.com/developer
 ### Install via CDN
 ```html
 <script src="https://unpkg.com/vue"></script>
-<script src="https://unpkg.com/vue-instagram"></script>
+<script src="https://unpkg.com/vue-instagram@3.0.0"></script>
 
 <script>
   Vue.use(VueInstagram.default)
@@ -61,10 +61,13 @@ Style your feeds using [scoped slot](https://vuejs.org/v2/guide/components.html#
 ```vue
 <template>
   <vue-instagram token="accessTokenHere" :count="5" :tags="['hashtag1', 'hashtag2']" mediaType="image">
-    <template slot="feeds" slot-scope="props">
+    <template v-slot:loading="props">
+      <h1 v-if="props.loading" class="fancy-loading">Loading, please wait...</h1>
+    </template>
+    <template v-slot:feeds="props">
       <li class="fancy-list"> {{ props.feed.link }} </li>
     </template>
-    <template slot="error" slot-scope="props">
+    <template v-slot:error="props">
       <div class="fancy-alert"> {{ props.error.error_message }} </div>
     </template>
   </vue-instagram>
