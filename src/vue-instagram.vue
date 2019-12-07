@@ -1,16 +1,28 @@
 <template>
   <div :class="containerClass">
-    <slot v-for="(feed, index) in feeds" name="feeds" :index="index" :feed="feed"></slot>
-    <slot name="error" :error="error"></slot>
+    <slot
+      name="loading"
+      :loading="loading"
+    />
+    <slot
+      v-for="(feed, index) in feeds"
+      name="feeds"
+      :index="index"
+      :feed="feed"
+    />
+    <slot
+      name="error"
+      :error="error"
+    />
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
-import jsonp from 'browser-jsonp'
+import axios from 'axios'
 
 export default {
-  name: 'vue-instagram',
+  name: 'VueInstagram',
 
   props: {
     /*
@@ -35,6 +47,7 @@ export default {
     */
     mediaType: {
       type: String,
+      default: '',
       required: false
     },
 
@@ -50,13 +63,14 @@ export default {
     // class for container div
     containerClass: {
       type: String,
-      default : '',
-      required : false
+      default: '',
+      required: false
     }
   },
 
   data: () => ({
     error: '',
+    loading: false,
     feeds: []
   }),
 
@@ -66,15 +80,17 @@ export default {
 
   methods: {
     getUserFeed () {
-      jsonp({
-        url: `https://api.instagram.com/v1/users/self/media/recent`,
-        data: { access_token: this.token, count: this.count },
-        error: error => { throw error },
-        complete: response => {
-          if (response.meta.code === 400) this.error = response.meta
-          if (response.meta.code === 200) {
-            if (response.meta.code === 200) {
-              let { data } = response
+      this.loading = true
+      axios
+        .get('https://api.instagram.com/v1/users/self/media/recent', {
+          params: { access_token: this.token, count: this.count }
+        })
+        .then(response => {
+          this.loading = false
+          if (response.data.meta.code === 400) this.error = response.data.meta
+          if (response.data.meta.code === 200) {
+            if (response.data.meta.code === 200) {
+              let { data } = response.data
               const types = ['image', 'video']
 
               if (this.mediaType && types.indexOf(this.mediaType) > -1) {
@@ -88,8 +104,8 @@ export default {
               this.feeds = _.slice(_.values(data), 0, this.count)
             }
           }
-        }
-      })
+        })
+        .catch(error => { throw error })
     }
   }
 }

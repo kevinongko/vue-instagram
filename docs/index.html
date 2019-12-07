@@ -29,7 +29,10 @@
 
       <div class="section container">
         <vue-instagram :token="token" :count="6" class="columns is-multiline is-mobile">
-          <template slot="feeds" slot-scope="props">
+          <template v-slot:loading="props">
+            <h1 v-if="props.loading" class="title is-1">Loading, please wait...</h1>
+          </template>
+          <template v-slot:feeds="props">
             <div class="column is-4-desktop is-6-tablet is-6-mobile">
               <div class="card">
                 <div class="card-image">
@@ -94,7 +97,7 @@
   </body>
 
   <script src="https://unpkg.com/vue"></script>
-  <script src="https://unpkg.com/vue-instagram"></script>
+  <script src="../dist/vue-instagram.min.js"></script>
   <script>
     Vue.use(VueInstagram.default)
 
