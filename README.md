@@ -1,5 +1,7 @@
 # vue-instagram
 
+# Currently this library is unusable because of Instagram's API changes
+
 [![npm](https://img.shields.io/npm/v/vue-instagram.svg)](https://www.npmjs.com/package/vue-instagram)
 [![npm](https://img.shields.io/npm/dt/vue-instagram.svg)](https://www.npmjs.com/package/vue-instagram)
 [![npm](https://img.shields.io/npm/dm/vue-instagram.svg)](https://www.npmjs.com/package/vue-instagram)
